@@ -9,9 +9,7 @@ Bundle 'gmarik/vundle'
 Bundle 'majutsushi/tagbar'
 Bundle 'kevinw/pyflakes-vim'
 Bundle 'airblade/vim-gitgutter'
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-Bundle "garbas/vim-snipmate"
+Bundle 'msanders/snipmate.vim'
 Bundle 'itchyny/lightline.vim'
 
 " Enable filetype and syntax
