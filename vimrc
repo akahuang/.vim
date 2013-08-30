@@ -1,9 +1,19 @@
-" Enable pathogen
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+" Vundle 
+filetype off                   " required!
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+Bundle 'gmarik/vundle'
+" My Bundles here:
+Bundle 'majutsushi/tagbar'
+Bundle 'kevinw/pyflakes-vim'
+Bundle 'airblade/vim-gitgutter'
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+Bundle "garbas/vim-snipmate"
 
 " Enable filetype and syntax
-filetype off            " necessary to make ftdetect work on Linux
 syntax on               " enable syntax
 filetype on             " enable filetype detection
 filetype indent on      " enable filetype-specific indenting
