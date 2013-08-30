@@ -12,6 +12,7 @@ Bundle 'airblade/vim-gitgutter'
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle "garbas/vim-snipmate"
+Bundle 'itchyny/lightline.vim'
 
 " Enable filetype and syntax
 syntax on               " enable syntax
