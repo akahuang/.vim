@@ -68,12 +68,12 @@ imap <C-k> <up>
 imap <C-j> <down>
 imap <C-h> <left>
 imap <C-l> <right>
-map  <C-k> Hjzz
-map  <C-j> Lkzz
-map  <C-n> :tabnew<CR>
-map  <C-h> :tabprevious<CR>
-map  <C-l> :tabnext<CR>
-map  <C-c> :nohl<CR>
+nnoremap  <C-k> Hjzz
+nnoremap  <C-j> Lkzz
+nnoremap  <C-n> :tabnew<CR>
+nnoremap  <C-h> :tabprevious<CR>
+nnoremap  <C-l> :tabnext<CR>
+nnoremap  <C-c> :nohl<CR>
 nmap ; :
 vmap ; :
 nmap <tab> v>
@@ -84,7 +84,7 @@ vmap <s-tab> <gv
 map <C-p> :set paste!<CR>
 
 " Kill the file
-nnoremap K :q<CR>
+nnoremap <C-k> :q<CR>
 " Don't move on *
 nnoremap * *<c-o>
 " Keep search matches in the middle of the window.
