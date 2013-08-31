@@ -82,8 +82,20 @@ vmap <tab> >gv
 vmap <s-tab> <gv
 " Ctrl-p: toggle the paste mode
 map <C-p> :set paste!<CR>
-map <space> /
 
+" Kill the file
+nnoremap K :q<CR>
+" Don't move on *
+nnoremap * *<c-o>
+" Keep search matches in the middle of the window.
+nnoremap n nzzzv
+nnoremap N Nzzzv
+" Easier to type, and I never use the default behavior.
+noremap H ^
+noremap L $
+" Space to toggle folds.
+nnoremap <Space> za
+vnoremap <Space> za
 
 " Plugin settings
 " Tagbar
@@ -98,11 +110,12 @@ endif
 let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ 'component': {
-      \   'readonly': '%{&readonly?"x":""}',
+      \   'readonly': '%{&readonly?"":""}',
       \ },
-      \ 'separator': { 'left': '', 'right': '' },
-      \ 'subseparator': { 'left': '|', 'right': '|' }
+      \ 'separator': { 'left': '', 'right': '' },
+      \ 'subseparator': { 'left': '', 'right': '' }
       \ }
+let g:Powerline_symbols = 'fancy'
 
 " GitGutter
 highlight clear SignColumn

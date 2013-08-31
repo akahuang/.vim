@@ -1,5 +1,5 @@
 set fuoptions=maxvert,maxhorz " fullscreen options (MacVim only), resized window when changed to fullscreen
-set guifont=Inconsolata:h22
+set guifont=Inconsolata\ for\ Powerline:h22
 set guioptions-=T
 set guioptions-=m
 set guioptions+=c
