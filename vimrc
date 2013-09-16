@@ -1,4 +1,5 @@
 " Vundle 
+filetype on                    " let git amend not to error
 filetype off                   " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -49,7 +50,7 @@ set incsearch           " move the matched pattern while entering
 set ignorecase          " ignore the case while searching
 
 " File format and encodings
-set fileformats=dos,mac,unix
+set fileformats=unix,dos,mac
 set fileencodings=utf-8,big5
 set termencoding=utf-8
 set encoding=utf-8
@@ -84,7 +85,7 @@ vmap <s-tab> <gv
 map <C-p> :set paste!<CR>
 
 " Kill the file
-nnoremap <C-k> :q<CR>
+nnoremap K :q<CR>
 " Don't move on *
 nnoremap * *<c-o>
 " Keep search matches in the middle of the window.
