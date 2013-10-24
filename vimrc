@@ -1,4 +1,4 @@
-" Vundle 
+" Vundle
 filetype on                    " let git amend not to error
 filetype off                   " required!
 set rtp+=~/.vim/bundle/vundle/
@@ -27,7 +27,7 @@ set ruler               " show the cursor position all the time
 set showtabline=2       " always show the tab line
 set noshowmode          " do not show the vim mode because of lightline
 set showcmd             " show the command at the bottom
-set title               " set the terminal title 
+set title               " set the terminal title
 set bs=2                " allow backspacing over everything in insert mode
 set scrolloff=5         " leave 5 lines around the cursor
 set history=50          " keep 50 lines of command line history
@@ -56,16 +56,21 @@ set termencoding=utf-8
 set encoding=utf-8
 
 " Swap and backup file
-if has("win32") 
-    set directory=c:\\tmp,c:\\temp 
-    set backupdir=c:\\tmp,c:\\temp 
-elseif has("unix") 
-    set directory=/tmp 
-    set backupdir=/tmp 
+if has("win32")
+    set directory=c:\\tmp,c:\\temp
+    set backupdir=c:\\tmp,c:\\temp
+elseif has("unix")
+    set directory=/tmp
+    set backupdir=/tmp
 endif
 
+" Display unwanted charactors
+set list listchars=tab:_
+highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen ctermfg=white
+call matchadd('ExtraWhitespace', '\s\+$')
+
 " Key mapping
-imap <C-k> <up> 
+imap <C-k> <up>
 imap <C-j> <down>
 imap <C-h> <left>
 imap <C-l> <right>
@@ -75,12 +80,13 @@ nnoremap  <C-n> :tabnew<CR>
 nnoremap  <C-h> :tabprevious<CR>
 nnoremap  <C-l> :tabnext<CR>
 nnoremap  <C-c> :nohl<CR>
-nmap ; :
+nnoremap ; :
 vmap ; :
-nmap <tab> v>
-nmap <s-tab> v<
+nnoremap <tab> v>
+nnoremap <s-tab> v<
 vmap <tab> >gv
 vmap <s-tab> <gv
+
 " Ctrl-p: toggle the paste mode
 map <C-p> :set paste!<CR>
 
