@@ -1,7 +1,3 @@
-ln -s ~/.vim/vimrc ~/.vimrc
+# Installation:
 
-Install vundle
-git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-
-in vim:
-:BundleInstall
+    ./install.sh
