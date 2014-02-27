@@ -12,6 +12,7 @@ Bundle 'kevinw/pyflakes-vim'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'msanders/snipmate.vim'
 Bundle 'itchyny/lightline.vim'
+Bundle 'dm4/vim-writer'
 
 " Enable filetype and syntax
 syntax on               " enable syntax
@@ -127,3 +128,6 @@ let g:Powerline_symbols = 'fancy'
 " GitGutter
 highlight clear SignColumn
 let g:gitgutter_sign_column_always = 1
+
+" markdown
+autocmd BufReadPost,BufNewFile *.md set filetype=markdown
