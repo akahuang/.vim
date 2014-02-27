@@ -21,6 +21,10 @@ filetype indent on      " enable filetype-specific indenting
 filetype plugin on      " enable filetype-specific plugins
 colorscheme darkblue
 
+" Auto-completion
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+set completeopt=longest,menu
+
 " General Settings
 set nocompatible        " not compatible with the old-fashion vi mode
 set number              " show line number
@@ -91,8 +95,6 @@ vmap <s-tab> <gv
 " Ctrl-p: toggle the paste mode
 map <C-p> :set paste!<CR>
 
-" Kill the file
-nnoremap K :q<CR>
 " Don't move on *
 nnoremap * *<c-o>
 " Keep search matches in the middle of the window.
@@ -102,13 +104,13 @@ nnoremap N Nzzzv
 noremap H ^
 noremap L $
 " Space to toggle folds.
-nnoremap <Space> za
-vnoremap <Space> za
+" nnoremap <Space> za
+" vnoremap <Space> za
 
 " Plugin settings
 " Tagbar
 let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
-map <C-o> :TagbarToggle<CR>
+" nnoremap <C-o> :TagbarToggle<CR>
 
 " Lightline
 set laststatus=2
@@ -131,3 +133,12 @@ let g:gitgutter_sign_column_always = 1
 
 " markdown
 autocmd BufReadPost,BufNewFile *.md set filetype=markdown
+
+" Add python header
+function PyHeader()
+    if getfsize(@%) <= 0
+        execute "norm i#!/usr/bin/env python# -*- coding: utf-8 -*-"
+    endif
+endfunction
+
+au BufRead,BufNewFile *.py call PyHeader()
