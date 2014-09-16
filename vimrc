@@ -3,6 +3,7 @@ filetype on                    " let git amend not to error
 filetype off                   " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
+let g:vundle_default_git_proto='git'
 
 " let Vundle manage Vundle
 Bundle 'gmarik/vundle'
@@ -13,6 +14,8 @@ Bundle 'airblade/vim-gitgutter'
 Bundle 'msanders/snipmate.vim'
 Bundle 'itchyny/lightline.vim'
 Bundle 'dm4/vim-writer'
+Bundle 'Shougo/unite.vim'
+Bundle 'Shougo/unite-outline'
 
 " Enable filetype and syntax
 syntax on               " enable syntax
@@ -103,9 +106,6 @@ nnoremap N Nzzzv
 " Easier to type, and I never use the default behavior.
 noremap H ^
 noremap L $
-" Space to toggle folds.
-" nnoremap <Space> za
-" vnoremap <Space> za
 
 " Plugin settings
 " Tagbar
@@ -142,3 +142,23 @@ function PyHeader()
 endfunction
 
 au BufRead,BufNewFile *.py call PyHeader()
+
+" Unite
+let g:unite_source_history_yank_enable = 1
+let g:unite_kind_file_vertical_preview = 1
+
+nnoremap <space>f :Unite -no-split -start-insert -buffer-name=files file<CR>
+nnoremap <space>b :Unite -no-split -auto-preview -buffer-name=buffer buffer<CR>
+" nnoremap <space>o :Unite -no-split -start-insert -buffer-name=outline outline<CR>
+nnoremap <space>y :Unite history/yank<CR>
+nnoremap <space>r :UniteResume <CR>
+
+
+" Custom mappings for the unite buffer
+autocmd FileType unite call s:unite_settings()
+function! s:unite_settings()
+  " Enable navigation with control-j and control-k in insert mode
+  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+endfunction
+
