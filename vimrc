@@ -15,6 +15,7 @@ Bundle 'msanders/snipmate.vim'
 Bundle 'itchyny/lightline.vim'
 Bundle 'dm4/vim-writer'
 Bundle 'Shougo/unite.vim'
+Bundle 'Shougo/neomru.vim'
 Bundle 'Shougo/unite-outline'
 
 " Enable filetype and syntax
@@ -145,11 +146,12 @@ au BufRead,BufNewFile *.py call PyHeader()
 
 " Unite
 let g:unite_source_history_yank_enable = 1
-let g:unite_kind_file_vertical_preview = 1
+let g:unite_kind_file_vertical_preview = 0
 
 nnoremap <space>f :Unite -no-split -start-insert -buffer-name=files file<CR>
 nnoremap <space>b :Unite -no-split -auto-preview -buffer-name=buffer buffer<CR>
-" nnoremap <space>o :Unite -no-split -start-insert -buffer-name=outline outline<CR>
+nnoremap <space>o :Unite -no-split -auto-preview -buffer-name=files file_mru<CR>
+nnoremap <space>t :Unite -toggle -no-quit -vertical -winwidth=30 -buffer-name=outline outline<CR>
 nnoremap <space>y :Unite history/yank<CR>
 nnoremap <space>r :UniteResume <CR>
 
