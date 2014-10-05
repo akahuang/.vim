@@ -8,7 +8,7 @@ let g:vundle_default_git_proto='git'
 " let Vundle manage Vundle
 Bundle 'gmarik/vundle'
 " My Bundles here:
-Bundle 'majutsushi/tagbar'
+" Bundle 'majutsushi/tagbar'
 Bundle 'kevinw/pyflakes-vim'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'msanders/snipmate.vim'
