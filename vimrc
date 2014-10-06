@@ -107,10 +107,6 @@ noremap H ^
 noremap L $
 
 " Plugin settings
-" Tagbar
-let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
-" nnoremap <C-o> :TagbarToggle<CR>
-
 " Lightline
 set laststatus=2
 if !has('gui_running')
