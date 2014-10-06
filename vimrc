@@ -8,12 +8,10 @@ let g:vundle_default_git_proto='git'
 " let Vundle manage Vundle
 Bundle 'gmarik/vundle'
 " My Bundles here:
-" Bundle 'majutsushi/tagbar'
 Bundle 'kevinw/pyflakes-vim'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'msanders/snipmate.vim'
 Bundle 'itchyny/lightline.vim'
-Bundle 'dm4/vim-writer'
 Bundle 'Shougo/unite.vim'
 Bundle 'Shougo/neomru.vim'
 Bundle 'Shougo/unite-outline'
@@ -147,6 +145,7 @@ au BufRead,BufNewFile *.py call PyHeader()
 " Unite
 let g:unite_source_history_yank_enable = 1
 let g:unite_kind_file_vertical_preview = 0
+let g:unite_split_rule = "rightbelow"
 
 nnoremap <space>f :Unite -no-split -start-insert -buffer-name=files file<CR>
 nnoremap <space>b :Unite -no-split -auto-preview -buffer-name=buffer buffer<CR>
