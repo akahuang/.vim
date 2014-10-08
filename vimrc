@@ -141,14 +141,18 @@ au BufRead,BufNewFile *.py call PyHeader()
 " Unite
 let g:unite_source_history_yank_enable = 1
 let g:unite_kind_file_vertical_preview = 0
-let g:unite_split_rule = "rightbelow"
+let g:unite_split_rule = 'belowright'
+" call unite#custom#profile('default', 'context', {'direction': 'botright'})
 
-nnoremap <space>f :Unite -no-split -start-insert -buffer-name=files file<CR>
+nnoremap <space>f :Unite -no-split -start-insert -buffer-name=files -prompt-direction=top file<CR>
 nnoremap <space>b :Unite -no-split -auto-preview -buffer-name=buffer buffer<CR>
-nnoremap <space>o :Unite -no-split -auto-preview -buffer-name=files file_mru<CR>
-nnoremap <space>t :Unite -toggle -no-quit -vertical -winwidth=30 -buffer-name=outline outline<CR>
+nnoremap <space>o :Unite -no-split -auto-preview -buffer-name=files  file_mru<CR>
+nnoremap <space><space> :Unite -no-split -start-insert -buffer-name=all -prompt-direction=top file buffer file_mru<CR>
+nnoremap <space>t :Unite -toggle -default-action=persist_open -vertical -winwidth=30 -buffer-name=outline outline<CR>
 nnoremap <space>y :Unite history/yank<CR>
-nnoremap <space>r :UniteResume <CR>
+nnoremap <space>r :UniteResume<CR>
+nnoremap <space>/ :Unite -start-insert line<CR>
+nnoremap <space>* :UniteWithCursorWord line<CR>
 
 
 " Custom mappings for the unite buffer
