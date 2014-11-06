@@ -8,10 +8,11 @@ let g:vundle_default_git_proto='git'
 " let Vundle manage Vundle
 Bundle 'gmarik/vundle'
 " My Bundles here:
-Bundle 'kevinw/pyflakes-vim'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'msanders/snipmate.vim'
+Bundle 'scrooloose/syntastic'
+Bundle 'Valloric/YouCompleteMe'
+" Bundle 'msanders/snipmate.vim' TODO: change to UltiSnips
 Bundle 'itchyny/lightline.vim'
+Bundle 'airblade/vim-gitgutter'
 Bundle 'Shougo/unite.vim'
 Bundle 'Shougo/neomru.vim'
 Bundle 'Shougo/unite-outline'
@@ -22,10 +23,6 @@ filetype on             " enable filetype detection
 filetype indent on      " enable filetype-specific indenting
 filetype plugin on      " enable filetype-specific plugins
 colorscheme darkblue
-
-" Auto-completion
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-set completeopt=longest,menu
 
 " General Settings
 set nocompatible        " not compatible with the old-fashion vi mode
@@ -114,13 +111,69 @@ if !has('gui_running')
 endif
 let g:lightline = {
       \ 'colorscheme': 'wombat',
+      \ 'mode_map': {'c': 'NORMAL'},
+      \ 'active': {
+      \   'left': [
+      \     ['mode', 'paste'],
+      \     ['filename'],
+      \   ],
+      \   'right': [
+      \     ['lineinfo', 'syntastic'],
+      \     ['filetype', 'percent'],
+      \     ['pwd', 'charcode', 'fileformat', 'fileencoding'],
+      \   ]
+      \ },
+      \ 'component_function': {
+      \   'modified'    : 'MyModified',
+      \   'filename'    : 'MyFilename',
+      \   'filetype'    : 'MyFiletype',
+      \   'fileformat'  : 'MyFileformat',
+      \   'fileencoding': 'MyFileencoding',
+      \   'mode'        : 'MyMode',
+      \   'pwd'         : 'MyPwd',
+      \ },
       \ 'component': {
       \   'readonly': '%{&readonly?"":""}',
       \ },
       \ 'separator': { 'left': '', 'right': '' },
-      \ 'subseparator': { 'left': '', 'right': '' }
+      \ 'subseparator': { 'left': '|', 'right': '|'}
       \ }
 let g:Powerline_symbols = 'fancy'
+
+function! MyModified()
+  return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+function! MyReadonly()
+  return &ft !~? 'help\|vimfiler\|gundo' && &ro ? 'RO' : ''
+endfunction
+
+function! MyFilename()
+  return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
+        \ (&ft == 'unite' ? unite#get_status_string() :
+        \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+        \ ('' != MyModified() ? ' ' . MyModified() : '')
+endfunction
+
+function! MyMode()
+  return  &ft == 'unite' ? 'Unite' : lightline#mode()
+endfunction
+
+function! MyFiletype()
+  return winwidth(0) < 50 ? '' : (strlen(&filetype) ? &filetype : 'no ft')
+endfunction
+
+function! MyFileformat()
+  return winwidth(0) < 70 ? '' : &fileformat
+endfunction
+
+function! MyFileencoding()
+  return winwidth(0) < 70 ? '' : (strlen(&fenc) ? &fenc : &enc)
+endfunction
+
+function! MyPwd()
+    return winwidth(0) < 100 ? '' : substitute(getcwd(), '/Users/flarehunter', '~', 'g')
+endfunction
 
 " GitGutter
 highlight clear SignColumn
@@ -145,6 +198,7 @@ let g:unite_split_rule = 'belowright'
 " call unite#custom#profile('default', 'context', {'direction': 'botright'})
 
 nnoremap <space>f :Unite -no-split -start-insert -buffer-name=files -prompt-direction=top file<CR>
+nnoremap <space>F :Unite -no-split -start-insert -buffer-name=files -prompt-direction=top file_rec<CR>
 nnoremap <space>b :Unite -no-split -auto-preview -buffer-name=buffer buffer<CR>
 nnoremap <space>o :Unite -no-split -auto-preview -buffer-name=files  file_mru<CR>
 nnoremap <space><space> :Unite -no-split -start-insert -buffer-name=all -prompt-direction=top file buffer file_mru<CR>
@@ -163,3 +217,14 @@ function! s:unite_settings()
   imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
 endfunction
 
+" Syntastic setting
+let g:syntastic_check_on_open=1
+" let g:syntastic_auto_loc_list = 1
+let g:syntastic_loc_list_height = 5
+let g:syntastic_python_checkers = ["flake8"]
+let g:syntastic_python_flake8_args="--max-line-length=120"
+
+" for ycm
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_error_symbol = '>>'
+let g:ycm_warning_symbol = '>*'
