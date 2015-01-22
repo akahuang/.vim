@@ -39,6 +39,7 @@ set autoread            " auto read when file is changed from outside
 set wildmenu            " turn on the wild menu
 set noerrorbells        " turn off the error bell
 set novisualbell        " turn off the visual bell
+set clipboard=unnamed   " bind system clipboard
 
 " Indent settings
 set shiftwidth=4        " indent size is 4
@@ -172,7 +173,7 @@ function! MyFileencoding()
 endfunction
 
 function! MyPwd()
-    return winwidth(0) < 100 ? '' : substitute(getcwd(), '/Users/flarehunter', '~', 'g')
+    return winwidth(0) < 100 ? '' : substitute(getcwd(), $HOME, '~', 'g')
 endfunction
 
 " GitGutter
