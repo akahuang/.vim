@@ -22,7 +22,7 @@ syntax on               " enable syntax
 filetype on             " enable filetype detection
 filetype indent on      " enable filetype-specific indenting
 filetype plugin on      " enable filetype-specific plugins
-colorscheme darkblue
+colorscheme desert
 
 " General Settings
 set nocompatible        " not compatible with the old-fashion vi mode
@@ -102,6 +102,7 @@ nnoremap N Nzzzv
 " Easier to type, and I never use the default behavior.
 noremap H ^
 noremap L $
+cnoremap sudow w !sudo tee % >/dev/null
 
 " Plugin settings
 " Lightline
@@ -172,7 +173,7 @@ function! MyFileencoding()
 endfunction
 
 function! MyPwd()
-    return winwidth(0) < 100 ? '' : substitute(getcwd(), '/Users/flarehunter', '~', 'g')
+    return winwidth(0) < 100 ? '' : substitute(getcwd(), $HOME, '~', 'g')
 endfunction
 
 " GitGutter
