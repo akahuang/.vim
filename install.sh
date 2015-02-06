@@ -9,3 +9,7 @@ git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
 # Install plugins
 vim +BundleInstall +qall
+
+# Install YouCompleteMe
+cd ~/.vim/bundle/YouCompleteMe
+./install.sh --clang-completer
