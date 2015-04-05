@@ -16,13 +16,14 @@ Bundle 'airblade/vim-gitgutter'
 Bundle 'Shougo/unite.vim'
 Bundle 'Shougo/neomru.vim'
 Bundle 'Shougo/unite-outline'
+Bundle 'mileszs/ack.vim'
 
 " Enable filetype and syntax
 syntax on               " enable syntax
 filetype on             " enable filetype detection
 filetype indent on      " enable filetype-specific indenting
 filetype plugin on      " enable filetype-specific plugins
-colorscheme desert
+colorscheme darkblue
 
 " General Settings
 set nocompatible        " not compatible with the old-fashion vi mode
@@ -42,8 +43,8 @@ set novisualbell        " turn off the visual bell
 set clipboard=unnamed   " bind system clipboard
 
 " Indent settings
-set shiftwidth=4        " indent size is 4
-set softtabstop=4       " use 4 space to replace one tab
+set shiftwidth=2        " indent size is 4
+set softtabstop=2       " use 4 space to replace one tab
 set tabstop=8           " tab size is 8
 set expandtab           " use space to indent
 set smartindent
@@ -174,7 +175,7 @@ function! MyFileencoding()
 endfunction
 
 function! MyPwd()
-    return winwidth(0) < 100 ? '' : substitute(getcwd(), $HOME, '~', 'g')
+    return '' " winwidth(0) < 100 ? '' : substitute(getcwd(), $HOME, '~', 'g')
 endfunction
 
 " GitGutter
@@ -223,10 +224,33 @@ endfunction
 let g:syntastic_check_on_open=1
 " let g:syntastic_auto_loc_list = 1
 let g:syntastic_loc_list_height = 5
-let g:syntastic_python_checkers = ["flake8"]
+let g:syntastic_python_checkers = ["pyflakes"]
 let g:syntastic_python_flake8_args="--max-line-length=120"
 
 " for ycm
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 let g:ycm_error_symbol = '>>'
 let g:ycm_warning_symbol = '>*'
+let g:ycm_min_num_of_chars_for_completion = 2
+let g:ycm_filetype_blacklist = {
+      \ 'tagbar' : 1,
+      \ 'qf' : 1,
+      \ 'notes' : 1,
+      \ 'markdown' : 1,
+      \ 'unite' : 1,
+      \ 'text' : 1,
+      \ 'vimwiki' : 1,
+      \ 'pandoc' : 1,
+      \ 'infolog' : 1,
+      \ 'mail' : 1
+      \}
+nnoremap <space>[ :YcmCompleter GoTo<CR>
+
+
+" Google Setting
+" source /usr/share/vim/google/google.vim
+" Glug syntastic-google checkers=`{'python': 'gpylint'}`
+" let g:syntastic_mode_map = {'mode': 'passive'}
+
