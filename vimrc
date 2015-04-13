@@ -17,6 +17,8 @@ Bundle 'Shougo/unite.vim'
 Bundle 'Shougo/neomru.vim'
 Bundle 'Shougo/unite-outline'
 Bundle 'mileszs/ack.vim'
+Bundle 'Yggdroot/indentLine'
+Bundle 'mhinz/vim-startify'
 
 " Enable filetype and syntax
 syntax on               " enable syntax
@@ -82,7 +84,7 @@ imap <C-h> <left>
 imap <C-l> <right>
 nnoremap  <C-k> Hjzz
 nnoremap  <C-j> Lkzz
-nnoremap  <C-n> :tabnew<CR>
+nnoremap  <C-n> :tabnew<CR>:Startify<CR>
 nnoremap  <C-h> :tabprevious<CR>
 nnoremap  <C-l> :tabnext<CR>
 nnoremap  <C-c> :nohl<CR>
@@ -254,3 +256,18 @@ nnoremap <space>[ :YcmCompleter GoTo<CR>
 " Glug syntastic-google checkers=`{'python': 'gpylint'}`
 " let g:syntastic_mode_map = {'mode': 'passive'}
 
+hi StartifyBracket ctermfg=240
+hi StartifyHeader  ctermfg=203
+hi StartifyNumber  ctermfg=215
+hi StartifyPath    ctermfg=245
+hi StartifySlash   ctermfg=240
+let g:startify_custom_header = [
+            \ '   __      ___            ______ ____',
+            \ '   \ \    / (_)           |____  |___ \',
+            \ '    \ \  / / _ _ __ ___       / /  __) |',
+            \ '     \ \/ / | | ''_ ` _ \     / /  |__ <',
+            \ '      \  /  | | | | | | |   / /   ___) |',
+            \ '       \/   |_|_| |_| |_|  /_(_) |____/',
+            \ '',
+            \ '',
+            \ ]
